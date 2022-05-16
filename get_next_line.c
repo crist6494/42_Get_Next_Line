@@ -6,35 +6,35 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 19:22:35 by cmorales          #+#    #+#             */
-/*   Updated: 2022/05/13 20:13:19 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/05/16 20:00:16 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <sys/uio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
- 
-static char	*ft_readline(int	fd)
-{
-	int	pos;
-	char	*esp;
-	
-	esp = (char *)malloc((sizeof(char) * 55));
-	pos = read(fd, esp, 10 );
-	esp[pos] = '\0';
-	printf("%s", esp);
-	return (0);
-}
+#include "get_next_line.h"
 
-
-int	main()
+static char	*ft_readline(int	fd, char	*buffer)
 {
-	int	fd;
+	int		read_pos;
+	char	*read_buffer;
 	
-	fd = open("pepe.txt", O_RDONLY);
-	ft_readline(fd);
-	return (0);
+	read_buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!read_buffer)
+	{
+		free(read_buffer);
+		return (0);
+	}
+	read_pos = 0;
+	while (!ft_strchr(buffer, '\n') && read_pos != 0)
+	{
+		read_pos = read(fd, read_buffer, BUFFER_SIZE);
+		if (read_pos < 0)
+		{
+			free (read_buffer);
+			return (0);
+		}
+		read_buffer[read_pos] = '\0';
+		buffer = ft_strjoin(buffer, read_buffer);
+	}
+	free(read_buffer);
+	return (buffer);	
 }
