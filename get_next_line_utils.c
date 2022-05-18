@@ -6,11 +6,25 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 19:22:49 by cmorales          #+#    #+#             */
-/*   Updated: 2022/05/17 18:50:11 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/05/18 19:33:43 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*tran;
+	size_t			pos;
+
+	tran = (unsigned char *)s;
+	pos = 0;
+	while (pos < n)
+	{
+		tran[pos] = 0;
+		pos++;
+	}
+}
 
 void	*ft_calloc(size_t	c, size_t	n)
 {
@@ -65,33 +79,6 @@ char	*ft_strchr(const char *s, int c)
 	return (esp);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	size_t	j;
-	char	*sub;
-
-	if (!s)
-		return (0);
-	if (start > ft_strlen(s))
-		return (ft_calloc(1, 1));
-	if ((start + len) > ft_strlen(s))
-		len = ft_strlen(s) - start;
-	sub = (char *)malloc(sizeof(char) * (len + 1));
-	if (!sub)
-		return (0);
-	i = start;
-	j = 0;
-	while (s[i] && j < len && (start < ft_strlen((char *)s)))
-	{
-		sub[j] = s[i];
-		j++;
-		i++;
-	}
-	sub[j] = '\0';
-	return (sub);
-}
-
 size_t	ft_strlen(const char	*str)
 {
 	int	pos;	
@@ -102,18 +89,4 @@ size_t	ft_strlen(const char	*str)
 		pos++;
 	}
 	return (pos);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*tran;
-	size_t			pos;
-
-	tran = (unsigned char *)s;
-	pos = 0;
-	while (pos < n)
-	{
-		tran[pos] = 0;
-		pos++;
-	}
 }
