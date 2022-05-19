@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 19:22:49 by cmorales          #+#    #+#             */
-/*   Updated: 2022/05/18 19:33:43 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/05/19 18:03:47 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
- char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	pos;
 	char	*esp;
