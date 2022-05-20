@@ -6,18 +6,18 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 19:22:35 by cmorales          #+#    #+#             */
-/*   Updated: 2022/05/19 17:59:18 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/05/20 10:37:57 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_freespace(char *buffer, char *buff)
+char	*ft_freespace(char *res, char *buffer)
 {
 	char	*aux;
 
-	aux = ft_strjoin(buffer, buff);
-	free(buffer);
+	aux = ft_strjoin(res, buffer);
+	free(res);
 	return (aux);
 }
 
@@ -38,7 +38,7 @@ char	*ft_read_line(int fd, char *res)
 			free(buffer);
 			return (0);
 		}
-		buffer[read_buffer] = 0;
+		buffer[read_buffer] = '\0';
 		res = ft_freespace(res, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
