@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/13 19:22:35 by cmorales          #+#    #+#             */
-/*   Updated: 2022/05/20 15:23:57 by cmorales         ###   ########.fr       */
+/*   Created: 2022/05/20 12:45:59 by cmorales          #+#    #+#             */
+/*   Updated: 2022/05/20 15:29:43 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_freespace(char *res, char *buffer)
 {
@@ -59,7 +59,7 @@ char	*ft_get_line(char *buffer)
 		pos++;
 	line = ft_calloc(pos + 2, sizeof(char));
 	pos = 0;
-	while ((buffer[pos] && buffer[pos] != '\n'))
+	while (buffer[pos] && buffer[pos] != '\n')
 	{
 		line[pos] = buffer[pos];
 		pos++;
@@ -71,9 +71,9 @@ char	*ft_get_line(char *buffer)
 
 char	*ft_remove_line(char *buffer)
 {
+	char	*line;
 	int		i;
 	int		j;
-	char	*line;
 
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
@@ -98,15 +98,15 @@ char	*ft_remove_line(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[256];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (0);
-	buffer = ft_read_line(fd, buffer);
-	if (!buffer)
+	buffer[fd] = ft_read_line(fd, buffer[fd]);
+	if (!buffer[fd])
 		return (0);
-	line = ft_get_line(buffer);
-	buffer = ft_remove_line(buffer);
+	line = ft_get_line(buffer[fd]);
+	buffer[fd] = ft_remove_line(buffer[fd]);
 	return (line);
 }

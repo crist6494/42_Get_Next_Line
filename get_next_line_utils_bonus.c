@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/13 19:22:49 by cmorales          #+#    #+#             */
-/*   Updated: 2022/05/20 14:48:22 by cmorales         ###   ########.fr       */
+/*   Created: 2022/05/20 12:46:34 by cmorales          #+#    #+#             */
+/*   Updated: 2022/05/20 15:27:19 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -26,7 +26,7 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*ft_calloc(size_t c, size_t	n)
+void	*ft_calloc(size_t c, size_t n)
 {
 	void	*rest;
 
@@ -44,7 +44,7 @@ void	*ft_calloc(size_t c, size_t	n)
 char	*ft_strchr(const char *s, int c)
 {
 	while (*s != '\0' && *s != (char)c)
-		s++;
+	s++;
 	if (*s == (char)c)
 	{
 		return ((char *)s);
@@ -79,9 +79,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (esp);
 }
 
-size_t	ft_strlen(const char	*str)
+size_t	ft_strlen(const char *str)
 {
-	int	pos;	
+	int	pos;
 
 	pos = 0;
 	while (str[pos] != '\0')
