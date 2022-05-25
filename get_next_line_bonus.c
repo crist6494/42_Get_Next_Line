@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 12:45:59 by cmorales          #+#    #+#             */
-/*   Updated: 2022/05/20 15:29:43 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/05/25 16:50:23 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*ft_read_line(int fd, char *res)
 		read_buffer = read(fd, buffer, BUFFER_SIZE);
 		if (read_buffer == -1)
 		{
+			free(res);
 			free(buffer);
 			return (0);
 		}
@@ -101,7 +102,7 @@ char	*get_next_line(int fd)
 	static char	*buffer[256];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	buffer[fd] = ft_read_line(fd, buffer[fd]);
 	if (!buffer[fd])
